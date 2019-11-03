@@ -53,3 +53,4 @@ INSERT INTO posts (poster_id, body)
 SELECT * FROM users;
 SELECT * FROM posts;
 
+SELECT poster_id, body, COUNT(id), ARRAY_AGG(liker_id) FROM posts JOIN likes ON posts.id = likes.post_id GROUP BY id;

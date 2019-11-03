@@ -13,7 +13,7 @@ const db = pgp(connectionString);
 router.get('/all', async (req, res) => {
 	let response;
 	try{
-		response = await db.any('SELECT * FROM posts');
+		response = await db.any('SELECT poster_id, body, COUNT(id)AS count, ARRAY_AGG(liker_id) AS users_who_liked FROM posts JOIN likes ON posts.id = likes.post_id GROUP BY id ');
 		res.send(response);
 	}
 	catch(err){

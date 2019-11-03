@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPosts();
     const specificPosts = document.querySelector('#findIndividualPostsButton');
     const createNewPost = document.querySelector('#createNewPost');
+    const filterLikes = document.querySelector('#filterLikes');
     specificPosts.addEventListener('click', findSpecPosts );
     createNewPost.addEventListener('click', createPost);
+    filterLikes.addEventListener('click', filter);
     const form = document.querySelector('#addUserForm');
     form.addEventListener('submit', addUserFormSubmitted);
 });
@@ -31,7 +33,7 @@ async function loadPosts() {
     }
     response.data.forEach((post) => {
         let listItem = document.createElement("li");
-        listItem.innerText = `${post.poster_id}: ${post.body}`;
+        listItem.innerText = `${post.poster_id}: ${post.body}(This post has ${post.count} likes and is liked by user ${post.users_who_liked})`;
         postsList.appendChild(listItem);
     });
 }
@@ -59,6 +61,23 @@ async function createPost(){
     document.querySelector('#post-body').value = '';
     let response = await axios.post('http://localhost:3030/posts/register', {poster_id, text});
     loadPosts();
+
+}
+
+async function filter(){
+    let numberToFilter = document.querySelector('#numberLikes').value;
+    const response = await axios.get(`http://localhost:3030/posts/all`);
+    while(postsList.firstChild){
+        postsList.removeChild(postsList.firstChild);
+    }
+    response.data.forEach((post) => {
+        console.log(numberToFilter);
+        let listItem = document.createElement("li");
+        if(parseInt(post.count) === parseInt(numberToFilter)){
+            listItem.innerText = `${post.poster_id}: ${post.body}(This post has ${post.count} likes)`;
+            postsList.appendChild(listItem);
+        }
+    });
 
 }
 
