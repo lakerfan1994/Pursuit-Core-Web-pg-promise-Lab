@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="index.js"></script>
+    <link rel='stylesheet' href='./index.css'>
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Laker Fan Club</h1>
+    <h3>Join the club!</h3>
+    <h2>Add New User</h2>
+    <form id="addUserForm">
+        <p>First Name: <input type="text" id='firstNameInput'></p>
+        <p>Last Name: <input type="text"id='lastNameInput'></p>
+        <p>Age: <input type="number", id='ageInput'></p>
+        <button>Submit</button>
+    </form>
+    <h2>All users</h2>
+    <ol id="usersList">
+    </ol>
+
+    <p> Enter the user number to find all posts by that user    <input type= 'number' id='findIndividualPosts'></p>
+    <button type='button' id='findIndividualPostsButton'>Submit</button>
+    <form>
+        <h2>Create a new post for a user!!</h2>
+        <p>Enter the poster Id for the post <input type='number' id='poster-id'></p>
+        <p>Type the post here!!!<input type='text' id='post-body'></p>
+        <button type='button' id='createNewPost'>Submit</button>
+    </form>
+
+    <ul id='postsList'>
+    <ul>
+</body>
+</html>
